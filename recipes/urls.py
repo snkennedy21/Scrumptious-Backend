@@ -7,6 +7,7 @@ from recipes.views import (
     show_recipes,
 )
 
+
 urlpatterns = [
     path("", show_recipes, name="recipes_list"),
     path("<int:pk>/", show_recipe, name="recipe_detail"),

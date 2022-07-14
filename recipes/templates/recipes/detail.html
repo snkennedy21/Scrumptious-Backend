@@ -16,52 +16,47 @@
     <nav>
       <ul>
         <li>
-          <a href="{% url 'home' %}">Scrumptious</a>
+          <a class="nav-link" href="{% url 'home' %}">Scrumptious</a>
         </li>
         <li>
-          <a href="{% url 'admin:index' %}">Admin</a>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li>
-          <a href="{% url 'recipe_new' %}">Write a recipe</a>
+          <a class="nav-link" href="{% url 'recipe_new' %}">Write a recipe</a>
         </li>
       </ul>
     </nav>
   </header>
   <main class="recipe">
-    {% if recipe.image %}
-    <img src="{{ recipe.image }}" class="pull-right">
-    {% endif %}
-    <h1 class="name">{{ recipe.name }}</h1>
-    <p>
-      Created on {{ recipe.created }} |
-      Updated on {{ recipe.updated }}
-    </p>
-    <p>Tags: {% for tag in recipe.tags.all %}{{ tag.name }} {% endfor %}</p>
-    <p>{{ recipe.description }}</p>
-    <h2>Ingredients</h2>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">Amount</th>
-          <th>Food item</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div class="section">
+      {% if recipe.image %}
+      <img src="{{ recipe.image }}" class="pull-right">
+      {% endif %}
+      <h1 class="name">{{ recipe.name }}</h1>
+      <p>{{ recipe.description }}</p>
+      <p>
+        Created on {{ recipe.created }} |
+        Updated on {{ recipe.updated }}
+      </p>
+      <p>Tags:</p>
+      <p>{% for tag in recipe.tags.all %}{{ tag.name }} {% endfor %}</p>
+    </div>
+    <div class="section">
+      <h2>Ingredients</h2>
+      <ul>
         {% for ingredient in recipe.ingredients.all %}
-        <tr>
-          <td>{{ ingredient.amount }}</td>
-          <td>{{ ingredient.measure.name }}</td>
-          <td>{{ ingredient.food.name }}</td>
-        </tr>
+        <li>{{ ingredient.amount }} {{ ingredient.measure.name }} {{ ingredient.food.name }}</li>
         {% endfor %}
-      </tbody>
-    </table>
-    <h2>Steps</h2>
-    <ol>
-      {% for step in recipe.steps.all %}
-      <li>{{ step.directions }}</li>
-      {% endfor %}
-    </ol>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Steps</h2>
+      <ol>
+        {% for step in recipe.steps.all %}
+        <li>{{ step.directions }}</li>
+        {% endfor %}
+      </ol>
+    </div>
   </main>
 </body>
 
