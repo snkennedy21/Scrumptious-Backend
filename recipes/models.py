@@ -3,6 +3,8 @@ from tkinter import TRUE
 from django.db import models
 from django.forms import CharField
 
+
+
 class Recipe(models.Model):
   name = models.CharField(max_length=125)
   author = models.CharField(max_length=100)
@@ -14,6 +16,16 @@ class Recipe(models.Model):
   def __str__(self):
     return self.name
   
+class Ingredient(models.Model):
+  amount = models.DecimalField(decimal_places=1, max_digits=2)
+  recipe = models.ForeignKey("Recipe", related_name="ingredients", on_delete=models.CASCADE)
+  measure = models.ForeignKey("Measure", on_delete=models.PROTECT)
+  food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)
+
+  def __str__(self):
+    return "Ingredient"
+
+
 class Measure(models.Model):
   name = models.CharField(max_length=30, unique=True)
   abbreviation = models.CharField(max_length=10, unique=True)
@@ -21,21 +33,11 @@ class Measure(models.Model):
   def __str__(self):
     return self.name
 
-
 class FoodItem(models.Model):
   name = models.CharField(max_length=100, unique=TRUE)
 
   def __str__(self):
     return self.name
-
-class Ingredient(models.Model):
-  amount = models.DecimalField(decimal_places=9, max_digits=10)
-  recipe = models.ForeignKey("Recipe", related_name="ingredients", on_delete=models.CASCADE)
-  measure = models.ForeignKey("Measure", on_delete=models.PROTECT)
-  food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)
-
-  def __str__(self):
-    return "Ingredient"
 
 class Step(models.Model):
   recipe = models.ForeignKey("Recipe", related_name="steps", on_delete=models.CASCADE)
@@ -48,7 +50,7 @@ class Step(models.Model):
 
 class Tag(models.Model):
   name = models.CharField(max_length=20)
-  recipes = models.ManyToManyField("Recipe", related_name="tags")
+  recipes = models.ManyToManyField("recipes.Recipe", related_name="tags")
 
   def __str__(self):
     return self.name
