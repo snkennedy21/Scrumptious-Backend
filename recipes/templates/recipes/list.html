@@ -16,25 +16,32 @@
     <nav>
       <ul>
         <li>
-          <a href="{% url 'home' %}">Scrumptious</a>
+          <a class="nav-link" href="{% url 'home' %}">Scrumptious</a>
         </li>
         <li>
-          <a href="{% url 'admin:index' %}">Admin</a>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li>
-          <a href="{% url 'recipe_new' %}">Write a recipe</a>
+          <a class="nav-link" href="{% url 'recipe_new' %}">Write a recipe</a>
         </li>
       </ul>
     </nav>
   </header>
   <main class="recipe-grid">
     {% for recipe in recipes %}
-      <div class="recipe-card">
+    <div class="recipe-card">
+      <div class="recipe-card__image-container">
+        {% if recipe.image %}
+        <img src="{{ recipe.image }}" class="pull-right">
+        {% endif %}
+      </div>
+      <div>
         <h2 class="recipe-card-title">
-          <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+          <a class="recipe-card-link" href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
         </h2>
         <p class="recipe-card-date">{{ recipe.updated }}</p>
       </div>
+    </div>
     {% endfor %}
   </main>
 </body>

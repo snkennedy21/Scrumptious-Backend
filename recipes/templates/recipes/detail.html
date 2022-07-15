@@ -27,36 +27,40 @@
       </ul>
     </nav>
   </header>
-  <main class="recipe">
-    <div class="section">
+  <main>
+    <section class="recipe-section">
       {% if recipe.image %}
       <img src="{{ recipe.image }}" class="pull-right">
       {% endif %}
-      <h1 class="name">{{ recipe.name }}</h1>
-      <p>{{ recipe.description }}</p>
-      <p>
-        Created on {{ recipe.created }} |
-        Updated on {{ recipe.updated }}
-      </p>
-      <p>Tags:</p>
-      <p>{% for tag in recipe.tags.all %}{{ tag.name }} {% endfor %}</p>
-    </div>
-    <div class="section">
-      <h2>Ingredients</h2>
-      <ul>
-        {% for ingredient in recipe.ingredients.all %}
-        <li>{{ ingredient.amount }} {{ ingredient.measure.name }} {{ ingredient.food.name }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="section">
-      <h2>Steps</h2>
-      <ol>
-        {% for step in recipe.steps.all %}
-        <li>{{ step.directions }}</li>
-        {% endfor %}
-      </ol>
-    </div>
+      <div class="recipe">
+        <div class="section">
+          <h1 class="name">{{ recipe.name }}</h1>
+          <p>{{ recipe.description }}</p>
+          <p>
+            Created on {{ recipe.created }} |
+            Updated on {{ recipe.updated }}
+          </p>
+          <p>Tags:</p>
+          <p>{% for tag in recipe.tags.all %}{{ tag.name }} {% endfor %}</p>
+        </div>
+        <div class="section">
+          <h2>Ingredients</h2>
+          <ul>
+            {% for ingredient in recipe.ingredients.all %}
+            <li>{{ ingredient.amount }} {{ ingredient.measure.name }} {{ ingredient.food.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="section">
+          <h2>Steps</h2>
+          <ol>
+            {% for step in recipe.steps.all %}
+            <li>{{ step.directions }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </section>
   </main>
 </body>
 
