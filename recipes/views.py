@@ -1,6 +1,7 @@
+from audioop import reverse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 try:
     from recipes.forms import RecipeForm
@@ -83,3 +84,10 @@ class RecipeDetailView(DetailView):
     model = Recipe
     context_object_name = 'recipe'
     template_name = 'recipes/detail.html'
+
+
+class DeleteRecipe(DeleteView):
+    model = Recipe
+    context_object_name = 'recipe'
+    template_name = 'recipes/delete.html'
+    success_url = reverse_lazy('recipes_list')
