@@ -23,7 +23,7 @@ class Ingredient(models.Model):
   food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)
 
   def __str__(self):
-    return "Ingredient"
+    return f'{self.amount} {self.measure} {self.food}'
 
 
 class Measure(models.Model):

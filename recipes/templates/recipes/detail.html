@@ -30,7 +30,9 @@
   <main>
     <section class="recipe-section">
       {% if recipe.image %}
-      <img src="{{ recipe.image }}" class="pull-right">
+      <div class="recipe-picture-container">
+        <img src="{{ recipe.image }}" class="recipe-picture">
+      </div>
       {% endif %}
       <div class="recipe">
         <div class="section">

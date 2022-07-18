@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 
+from django.views.generic import ListView
+
 try:
     from recipes.forms import RecipeForm
     from recipes.models import Recipe
@@ -43,10 +45,16 @@ def change_recipe(request, pk):
 
 
 def show_recipes(request):
-    context = {
+    context = { 
         "recipes": Recipe.objects.all() if Recipe else [],
     }
     return render(request, "recipes/list.html", context)
+
+
+class ShowRecipesView(ListView):
+    model = Recipe
+    context_object_name = 'recipes'
+    template_name = 'recipes/list.html'
 
 
 def show_recipe(request, pk):
@@ -54,3 +62,4 @@ def show_recipe(request, pk):
         "recipe": Recipe.objects.get(pk=pk) if Recipe else None,
     }
     return render(request, "recipes/detail.html", context)
+

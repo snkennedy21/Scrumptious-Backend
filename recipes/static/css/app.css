@@ -95,7 +95,7 @@ textarea {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 4rem 2rem;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .recipe-card {
@@ -105,6 +105,16 @@ textarea {
   background-color: rgb(246, 230, 188);
   border-radius: 1rem;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-0.5rem);
+}
+
+.recipe-card-info {
+  padding: 1rem 1rem;
+  width: 100%;
 }
 
 .recipe-card-title {
@@ -149,15 +159,25 @@ textarea {
 }
 
 .recipe-card__image-container {
-  /* width: 100%; */
+  width: 100%;
 }
 
-.pull-right {
+.recipe-image {
   width: 100%;
 }
 
 .control {
   text-align: right;
+}
+
+.recipe-picture-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-picture {
+  width: 50%;
 }
 
 .section {

@@ -32,10 +32,10 @@
     <div class="recipe-card">
       <div class="recipe-card__image-container">
         {% if recipe.image %}
-        <img src="{{ recipe.image }}" class="pull-right">
+        <img src="{{ recipe.image }}" class="recipe-image">
         {% endif %}
       </div>
-      <div>
+      <div class="recipe-card-info">
         <h2 class="recipe-card-title">
           <a class="recipe-card-link" href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
         </h2>
