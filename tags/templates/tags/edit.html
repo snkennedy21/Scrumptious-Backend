@@ -7,17 +7,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Recipe - Scrumptious</title>
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <title>Edit {{ recipe.name }} - Scrumptious</title>
 </head>
 
 <body>
   <header>
     <nav>
       <ul>
-        <li>
-          <a class="nav-link" href="{% url 'tags_list' %}">Tags</a>
-        </li>
         <li>
           <a href="{% url 'home' %}">Scrumptious</a>
         </li>
@@ -35,7 +32,7 @@
       {% csrf_token %}
       {{ form.as_p }}
       <div class="control">
-        <button class="button">Create</button>
+        <button class="button">Update</button>
       </div>
     </form>
   </main>

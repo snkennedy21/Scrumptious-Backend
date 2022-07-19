@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +7,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
   <title>Tags - Scrumptious</title>
 </head>
 
 <body>
-
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a class="nav-link" href="{% url 'home' %}">Scrumptious</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'recipe_new' %}">Write a recipe</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="create">
+      <a href="{% url 'new_tag' %}">Create Tag</a>
+    </div>
+    <div class="list">
+      <ul>
+        {% for tag in tags %}
+        <li>
+          <a href="{% url 'tag_detail' tag.pk %}">{{ tag.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
 </body>
 
 </html>

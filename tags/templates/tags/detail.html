@@ -16,28 +16,24 @@
     <nav>
       <ul>
         <li>
-          <a class="nav-link" href="{% url 'tags_list' %}">Tags</a>
+          <a class="nav-link" href="{% url 'home' %}">Scrumptious</a>
         </li>
         <li>
-          <a href="{% url 'home' %}">Scrumptious</a>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li>
-          <a href="{% url 'admin:index' %}">Admin</a>
-        </li>
-        <li>
-          <a href="{% url 'recipe_new' %}">Write a recipe</a>
+          <a class="nav-link" href="{% url 'recipe_new' %}">Write a recipe</a>
         </li>
       </ul>
     </nav>
   </header>
-  <main class="recipe-form">
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="control">
-        <button class="button">Create</button>
+  <main>
+    <section class="recipe-section">
+      <div>
+        <a href="{% url 'tag_edit' tag.id %}">Edit</a>
+        <a href="#">Delete</a>
       </div>
-    </form>
+    </section>
   </main>
 </body>
 
